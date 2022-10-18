@@ -8,7 +8,7 @@ License: MIT
 
 ## Settings
 
-Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings.html).
+[TODO] add available settings via .env.
 
 ## Basic Commands
 
