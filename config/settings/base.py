@@ -64,6 +64,9 @@ DJANGO_APPS = [
     # "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
     "django.forms",
+    # Local apps
+    "octopus.queues.apps.QueuesConfig",
+    "octopus.routes.apps.RoutesConfig",
 ]
 THIRD_PARTY_APPS = [
     "crispy_forms",

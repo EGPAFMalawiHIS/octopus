@@ -8,7 +8,7 @@ License: MIT
 
 ## Settings
 
-[TODO] add available settings via .env..
+[TODO] add available settings via .env.
 
 ## Basic Commands
 
