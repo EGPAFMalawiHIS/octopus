@@ -1,6 +1,6 @@
 # Octopus
 
-Multi-legged networking hub that routes payloads between apps via the least weighted available route – defaults to SMS routes where pre-defined routes are unavailable.
+Multi-legged networking hub that routes payloads between apps via the least weighted available route – defaults to SMS route where pre-defined routes are unavailable.
 
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
@@ -8,7 +8,7 @@ License: MIT
 
 ## Settings
 
-[TODO] add available settings via .env.
+[TODO] add available settings via .env..
 
 ## Basic Commands
 
