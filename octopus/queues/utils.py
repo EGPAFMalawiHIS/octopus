@@ -22,9 +22,3 @@ def get_source_from_ip(ip_address: str) -> Any:
         )
 
     return source_obj
-
-
-def get_obj_from_attr(qs, attr: str) -> Any:
-    """Gets the obj from attr"""
-
-    pass

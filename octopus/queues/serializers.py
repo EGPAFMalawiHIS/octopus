@@ -2,7 +2,7 @@ import logging
 
 from rest_framework import serializers
 
-from . import exceptions, models, utils
+from . import models
 
 
 class QueueItemSerializer(serializers.HyperlinkedModelSerializer):
@@ -22,7 +22,7 @@ class QueueItemSerializer(serializers.HyperlinkedModelSerializer):
 
         try:
 
-            validated_data["source"] = utils.get_source_from_ip(ip_address)
+            validated_data["source"] = models.Source.objects.get(address=ip_address)
 
             logging.info(
                 "The IP address, %s, is mapped to %s as it's source",
@@ -30,8 +30,13 @@ class QueueItemSerializer(serializers.HyperlinkedModelSerializer):
                 validated_data["source"],
             )
 
-        except exceptions.SourceNotFound:
+        except (models.Source.DoesNotExist, AssertionError):
             logging.info("No registered source found for %s", ip_address)
-            return
+            raise serializers.ValidationError(
+                {
+                    "status": "error",
+                    "message": f"No registered source found for {ip_address}",
+                }
+            )
 
         return super().create(validated_data)
