@@ -1,6 +1,6 @@
 # Octopus
 
-Multi-legged networking hub that routes payloads between apps via the least weighted available route – defaults to SMS route where pre-defined routes are unavailable.
+Multi-legged networking hub that routes payloads between apps via the least weighted available route.
 
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
@@ -14,11 +14,11 @@ License: MIT
 
 ### Setting Up Your Users
 
--   To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
+- To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
 
--   To create a **superuser account**, use this command:
+- To create a **superuser account**, use this command:
 
-        $ python manage.py createsuperuser
+        python manage.py createsuperuser
 
 For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
 
@@ -26,19 +26,19 @@ For convenience, you can keep your normal user logged in on Chrome and your supe
 
 Running type checks with mypy:
 
-    $ mypy octopus
+    mypy octopus
 
 ### Test coverage
 
 To run the tests, check your test coverage, and generate an HTML coverage report:
 
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
+    coverage run -m pytest
+    coverage html
+    open htmlcov/index.html
 
 #### Running tests with pytest
 
-    $ pytest
+    pytest
 
 ### Sentry
 
