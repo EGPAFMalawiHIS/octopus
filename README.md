@@ -1,3 +1,11 @@
+<p align="center">
+    <img src="./octopus/static/images/icons/octopus-64.png" alt="Octopus Icon">
+    <h3 align="center">Octopus</h3>
+    <p align="center">
+        Multi-legged networking hub that routes payloads between apps via the least weighted available route.
+    </p>
+</p>
+
 # Octopus
 
 Multi-legged networking hub that routes payloads between apps via the least weighted available route.
