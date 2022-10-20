@@ -2,17 +2,13 @@
     <img src="./octopus/static/images/icons/octopus-64.png" alt="Octopus Icon">
     <h3 align="center">Octopus</h3>
     <p align="center">
-        Multi-legged networking hub that routes payloads between apps via the least weighted available route.
+        System integrations solution for regions with unstable connectivity.
     </p>
+
+    <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Black code style"/>
+
+    <p align="center">License: MIT</p>
 </p>
-
-# Octopus
-
-Multi-legged networking hub that routes payloads between apps via the least weighted available route.
-
-[![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
-
-License: MIT
 
 ## Settings
 
