@@ -2,13 +2,14 @@
     <img src="./octopus/static/images/icons/octopus-64.png" alt="Octopus Icon">
     <h3 align="center">Octopus</h3>
     <p align="center">
-        System integrations solution for regions with unstable connectivity.
+        System integration solution for regions with unstable connectivity.
     </p>
 </p>
 
 # Octopus
 
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+[![EGPAF Devs](https://img.shields.io/badge/egpaf-devs-blue)](https://pedaids.org/project/improving-quality-of-care-and-health-impact-through-innovative-systems-and-technologies-in-malawi-health-information-systems-his-cdc/)
 
 License: MIT
 
