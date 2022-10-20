@@ -10,6 +10,8 @@
 
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 [![EGPAF Devs](https://img.shields.io/badge/egpaf-devs-blue)](https://pedaids.org/project/improving-quality-of-care-and-health-impact-through-innovative-systems-and-technologies-in-malawi-health-information-systems-his-cdc/)
+![CI](https://github.com/EGPAFMalawiHIS/octopus/actions/workflows/ci.yml/badge.svg)
+![What's deployed on dev,stage,prod?](https://img.shields.io/badge/whatsdeployed-dev,stage,prod-green.svg)
 
 License: MIT
 
