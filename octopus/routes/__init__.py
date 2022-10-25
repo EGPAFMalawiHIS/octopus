@@ -18,12 +18,10 @@ class RouteStatus:
 class RouteType:
     """Type of route"""
 
-    INTERNET = "Internet"
-    VPN = "VPN"
+    INTERNET_OR_VPN = "Internet"
     SMS = "SMS"
 
     CHOICES = [
-        (INTERNET, pgettext_lazy("route type", "Internet")),
-        (VPN, pgettext_lazy("route type", "VPN")),
+        (INTERNET_OR_VPN, pgettext_lazy("route type", "Internet or VPN")),
         (SMS, pgettext_lazy("route type", "SMS")),
     ]

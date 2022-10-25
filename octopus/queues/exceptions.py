@@ -7,3 +7,7 @@ class QueueError(Exception):
 
 class SourceNotFound(QueueError):
     """Flags missing payload source"""
+
+
+class NoRegisteredRoutesFound(QueueError):
+    """Flags missing registered route"""
