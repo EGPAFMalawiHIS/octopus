@@ -1,20 +1,19 @@
 import logging
+import os
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from octopus.octopus.queues import exceptions
+from octopus.queues import exceptions
 from octopus.routes import RouteType
 from octopus.routes.models import Route
 
-from . import models, routing
+from . import formats, models, routing
 
 
 @receiver(post_save, sender=models.QueueItem)
 def queue_item_created(sender, instance, created, **kwargs):
     """runs when an item is created in the queue"""
-
-    USE_INTERNET_OR_VPN_ROUTE = True
 
     if created:
 
@@ -24,20 +23,33 @@ def queue_item_created(sender, instance, created, **kwargs):
         registered_routes = Route.objects.all().order_by("weight")
 
         # get routes based on weighting
+
         try:
+            # this will bring 2 routes, the primary and fallback
+            route = {}
+            payload = {}
             routes = routing.get_weighted_routes(registered_routes)
 
-            for route in routes:
-                if route[RouteType.INTERNET_OR_VPN]:
+            if routes[RouteType.INTERNET_OR_VPN]["destination"]:
+                route = routes[RouteType.INTERNET_OR_VPN]
+                payload = instance.payload
 
-                    USE_INTERNET_OR_VPN_ROUTE = routing.is_available(
-                        route[RouteType.INTERNET_OR_VPN]["destination"]
-                    )
+            else:
+                route = routes[RouteType.SMS]
+                formats.SMS_DATA_FORMAT["tasks"][0]["to"] = os.environ.get("SHORTCODE")
+                formats.SMS_DATA_FORMAT["tasks"][0]["sms"] = instance.payload
+                payload = formats.SMS_DATA_FORMAT
+
+            logging.info("Using destination %s", route["destination"])
+
+            send_data = routing.send_data(
+                endpoint=route["destination"],
+                payload=payload,
+                headers={"Content-type": "application/json; charset=utf-8"},
+            )
+
+            logging.info(send_data)
 
         except exceptions.NoRegisteredRoutesFound:
 
             logging.error("No registered routes found.")
-
-        # send data
-        logging.info("USE_INTERNET_OR_VPN_ROUTE: %s", USE_INTERNET_OR_VPN_ROUTE)
-        logging.info("Preparing to send data to peer")

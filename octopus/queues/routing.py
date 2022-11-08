@@ -13,23 +13,25 @@ from . import exceptions
 
 
 def get_weighted_routes(routes) -> dict[str, str]:
-    """Get the default and fallback routes.
+    """Gets the default and fallback routes.
 
     Args:
         routes (dict[str,str]): Queryset of registered routes
 
     Returns:
-        list[str]: Available routes
+        dict[str,str]: Primary and fallback routes
     """
 
-    available_routes = {
+    primary_fallback_routes = {
         RouteType.INTERNET_OR_VPN: {
             "uuid": "",
+            "address": "",
             "destination": "",
             "weight": 0,
         },
         RouteType.SMS: {
             "uuid": "",
+            "address": "",
             "destination": "",
             "weight": 0,
         },
@@ -41,13 +43,19 @@ def get_weighted_routes(routes) -> dict[str, str]:
 
     for route in routes:
 
-        if route.weight > available_routes[route.type]["weight"]:
+        # if the route has a higher weighting
+        # and the route is available [successfully pinged]
+        # then that route is available
+        if route.weight > primary_fallback_routes[route.type][
+            "weight"
+        ] and is_available(route.address):
 
-            available_routes[route.type]["uuid"] = route.uuid
-            available_routes[route.type]["destination"] = route.destination
-            available_routes[route.type]["weight"] = route.weight
+            primary_fallback_routes[route.type]["uuid"] = route.uuid
+            primary_fallback_routes[route.type]["address"] = route.address
+            primary_fallback_routes[route.type]["destination"] = route.destination
+            primary_fallback_routes[route.type]["weight"] = route.weight
 
-    return available_routes
+    return primary_fallback_routes
 
 
 def is_available(address: str) -> bool:
@@ -84,7 +92,7 @@ def send_data(endpoint: str, payload: Any, headers: dict[str, str] = None) -> bo
     """
 
     try:
-        r = requests.post(endpoint, data=payload, headers=headers)
+        r = requests.post(endpoint, json=payload, headers=headers)
 
     except Exception as e:
         logging.error("Failed to send data to %s with exception %s", e, endpoint)
@@ -92,5 +100,6 @@ def send_data(endpoint: str, payload: Any, headers: dict[str, str] = None) -> bo
 
     else:
         r.raise_for_status()
-        logging.info("Data sent successfully to %s", endpoint)
+        logging.info("Data sent successfully to %s,", endpoint)
+        logging.info("Response %s: ", r.json())
         return True

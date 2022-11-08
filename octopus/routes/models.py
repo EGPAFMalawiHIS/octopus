@@ -60,7 +60,13 @@ class Route(BaseModel):
         max_length=255,
         null=True,
         blank=True,
-        help_text="This can be a default gateway or anything similar that can ascertain if a route is UP.",
+        help_text="This is the IP address of the peer.",
+    )
+    destination = models.CharField(
+        max_length=400,
+        null=True,
+        blank=True,
+        help_text="An endpoint. Will usually have the same IP address as the peer.",
     )
 
     class Meta:
